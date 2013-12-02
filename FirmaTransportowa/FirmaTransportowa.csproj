@@ -200,6 +200,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CalculatePathController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TodoController.cs" />
     <Compile Include="Controllers\TodoListController.cs" />
@@ -209,6 +210,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Algorithm\Firefly.cs" />
+    <Compile Include="Models\Algorithm\FireflyAlgorithm.cs" />
+    <Compile Include="Models\PlaceDTO.cs" />
     <Compile Include="Models\TodoItemDto.cs" />
     <Compile Include="Models\TodoListDto.cs" />
     <Compile Include="Models\TodoList.cs" />
@@ -300,6 +304,7 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Views\CalculatePath\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
