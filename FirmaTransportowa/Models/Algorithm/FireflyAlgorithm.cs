@@ -54,7 +54,7 @@ namespace FirmaTransportowa.Models.Algorithm
                         if (fireflies[i].FunctionValue() < best.FunctionValue())
                         {
                             best = fireflies[i];
-                            foundInIteartion = k - 1;
+                            foundInIteartion = k + 1;
                         }
                     }
                 }

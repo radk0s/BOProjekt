@@ -19,8 +19,8 @@ namespace FirmaTransportowa.Controllers
         [HttpPost]
         public ActionResult Index(List<List<int>> matrix)
         {
-            const int numberOfFireflies = 30;
-            const int numberOfIterations = 2000;
+            const int numberOfFireflies = 20;
+            const int numberOfIterations = 1000;
             int[,] distance = new int[matrix.Count, matrix[0].Count];
 
             for(int i = 0; i < matrix.Count; i++)

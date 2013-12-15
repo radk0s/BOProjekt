@@ -122,7 +122,17 @@
                 
                 var outputDiv = document.getElementById('distance');
                 outputDiv.innerHTML = '';
-                outputDiv.innerHTML += msg.cost/1000 + " km";
+                outputDiv.innerHTML += msg.cost / 1000 + " km";
+                
+                var outputDiv2 = document.getElementById('iteration');
+                outputDiv2.innerHTML = '';
+                outputDiv2.innerHTML += "Rozw znalezione w "+msg.iteration+" iteracji";
+                
+                var outputDiv3 = document.getElementById('time');
+                outputDiv3.innerHTML = '';
+                outputDiv3.innerHTML += "Czas" + msg.len / 1000 + " sek";
+
+                
                 var coords = [];
                 var last;
                 for (var iter = 0; iter < solution.length; iter++) {
@@ -168,6 +178,8 @@
         <div id="send" style="height: 60px; left: 0px; top: 0px; width: 100%;">
             <div id="calculate" onclick=" calculateDistances()" style="height: 100%; float:left; font-size: 40px; width: 250px; border-right: solid 1px;">Licz</div>
             <div id="distance" style="height: 100%; float:left; font-size: 40px; border-right: solid 1px;"></div>
+            <div id="iteration" style="height: 100%; float:left; font-size: 40px; border-right: solid 1px;"></div>
+            <div id="time" style="height: 100%; float:left; font-size: 40px; border-right: solid 1px;"></div>
         </div>
         <div id="content"></div>
         <div id="map-canvas"></div>

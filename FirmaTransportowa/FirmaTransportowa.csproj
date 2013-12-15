@@ -212,6 +212,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Algorithm\Firefly.cs" />
     <Compile Include="Models\Algorithm\FireflyAlgorithm.cs" />
+    <Compile Include="Models\PathModel.cs" />
     <Compile Include="Models\PlaceDTO.cs" />
     <Compile Include="Models\TodoItemDto.cs" />
     <Compile Include="Models\TodoListDto.cs" />
