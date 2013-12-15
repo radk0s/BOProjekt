@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+
 
 namespace FirmaTransportowa.Models.Algorithm
 {
@@ -24,6 +26,7 @@ namespace FirmaTransportowa.Models.Algorithm
 
         public Object Execute()
         {
+            var watch = Stopwatch.StartNew();
             var fireflies = new List<Firefly>();
             for (var i = 0; i < _numberOfFireflies; i++)
             {
@@ -32,6 +35,7 @@ namespace FirmaTransportowa.Models.Algorithm
                 fireflies.Add(f);
             }
             var best = fireflies[0];
+            var foundInIteartion = 1;
             for (var i = 0; i < _numberOfFireflies; i++)
             {
                 if (fireflies[i].FunctionValue() < best.FunctionValue())
@@ -50,12 +54,15 @@ namespace FirmaTransportowa.Models.Algorithm
                         if (fireflies[i].FunctionValue() < best.FunctionValue())
                         {
                             best = fireflies[i];
+                            foundInIteartion = k - 1;
                         }
                     }
                 }
             }
-            Console.WriteLine("Found the best rout. Lenght: " + best.FunctionValue());
-            return new {permutation = best.GetPermutation(), cost = best.FunctionValue()};
+            watch.Stop();
+            var time = watch.ElapsedMilliseconds;
+            Console.WriteLine("Found the best rout in iteration " + foundInIteartion + " in " + time + "ms. Length: " + best.FunctionValue());
+            return new {permutation = best.GetPermutation(), cost = best.FunctionValue(), iteration = foundInIteartion, len = time};
         }
     }
 }
