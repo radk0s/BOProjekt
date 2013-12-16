@@ -26,7 +26,7 @@ namespace FirmaTransportowa.Controllers
             _iterations = model[0];
             _fireflies = model[1];
 
-            return Json(model, JsonRequestBehavior.AllowGet);
+            return Json("OK", JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
