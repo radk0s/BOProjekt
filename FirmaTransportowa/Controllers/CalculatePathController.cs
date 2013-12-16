@@ -10,6 +10,10 @@ namespace FirmaTransportowa.Controllers
     {
         //
         // GET: /CalculatePath/
+
+        static private int _fireflies = 10;
+        static private int _iterations = 1000;
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -17,10 +21,19 @@ namespace FirmaTransportowa.Controllers
         }
 
         [HttpPost]
+        public ActionResult SetParams(List<int> model)
+        {
+            _iterations = model[0];
+            _fireflies = model[1];
+
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public ActionResult Index(List<List<int>> matrix)
         {
-            const int numberOfFireflies = 20;
-            const int numberOfIterations = 1000;
+            int numberOfFireflies = _fireflies;
+            int numberOfIterations = _iterations;
             int[,] distance = new int[matrix.Count, matrix[0].Count];
 
             for(int i = 0; i < matrix.Count; i++)
@@ -28,7 +41,7 @@ namespace FirmaTransportowa.Controllers
                 for (int j = 0; j < matrix[i].Count; j++)
                 {
                     distance[i, j] = matrix[i][j];
-                }                
+                }
             }
 
             var alg = new FireflyAlgorithm(distance, numberOfFireflies, numberOfIterations);

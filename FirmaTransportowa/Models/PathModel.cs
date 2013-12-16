@@ -9,6 +9,5 @@ namespace FirmaTransportowa.Models
     {
         public int iters { get; set; }
         public int fireflies { get; set; }
-        public List<List<int>> matrix { get; set; }
     }
 }

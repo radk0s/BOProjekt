@@ -64,6 +64,21 @@
             }            
 
             function calculateDistances() {
+
+                $(function () {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/CalculatePath/SetParams',
+                        data: JSON.stringify([document.getElementById("iterations").value, document.getElementById("fireflies").value]),
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        success: distancesCallback
+                    });
+                });
+                
+            }
+
+            function distancesCallback(response, status) {
                 var service = new window.google.maps.DistanceMatrixService();
                 var origins = [];
                 var destinations = [];
@@ -73,7 +88,7 @@
                     destinations.push(marker.position);
                 }
                 );
-
+                
                 service.getDistanceMatrix(
                     {
                         origins: origins,
@@ -82,10 +97,11 @@
                         unitSystem: window.google.maps.UnitSystem.METRIC,
                         avoidHighways: false,
                         avoidTolls: false
-                    }, distancesCallback);
-            }
+                    }, sendDistances);
 
-            function distancesCallback(response, status) {
+                }
+            
+            function sendDistances(response, status) {
                 if (status != google.maps.DistanceMatrixStatus.OK) {
                     alert('Error was: ' + status);
                 } else {
@@ -103,8 +119,7 @@
                     var outputDiv = document.getElementById('distance');
                     outputDiv.innerHTML = '';
                     outputDiv.innerHTML += "Czekaj...";
-                    //alert(JSON.stringify(distances));
-                    $(function() {
+                    $(function () {
                         $.ajax({
                             type: 'POST',
                             url: '/CalculatePath',
@@ -177,6 +192,8 @@
     <body>
         <div id="send" style="height: 60px; left: 0px; top: 0px; width: 100%;">
             <div id="calculate" onclick=" calculateDistances()" style="height: 100%; float:left; font-size: 40px; width: 250px; border-right: solid 1px;">Licz</div>
+            <input id="iterations" type="number" placeholder="iterations"/>
+            <input id="fireflies" type="number" placeholder="fireflies"/>
             <div id="distance" style="height: 100%; float:left; font-size: 40px; border-right: solid 1px;"></div>
             <div id="iteration" style="height: 100%; float:left; font-size: 40px; border-right: solid 1px;"></div>
             <div id="time" style="height: 100%; float:left; font-size: 40px; border-right: solid 1px;"></div>
